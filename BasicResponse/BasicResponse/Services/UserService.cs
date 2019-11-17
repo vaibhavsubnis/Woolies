@@ -11,7 +11,7 @@ namespace BasicResponse.Services
     {
         public User GetUser()
         {
-            return new User { Name = "Vaibhav", Token = "f87e372c-e848-4481-9b81-0830d3dbbfa8" };
+            return new User { Name = "Vaibhav Subnis", Token = "f87e372c-e848-4481-9b81-0830d3dbbfa8" };
         }
     }
 }

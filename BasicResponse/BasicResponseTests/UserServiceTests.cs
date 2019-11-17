@@ -15,7 +15,7 @@ namespace BasicResponseTests
             var result = _userService.GetUser();
 
             Assert.IsNotNull(result);
-            Assert.AreEqual("Vaibhav", result.Name);
+            Assert.AreEqual("Vaibhav Subnis", result.Name);
             Assert.IsNotNull(result.Token);
         }
 
