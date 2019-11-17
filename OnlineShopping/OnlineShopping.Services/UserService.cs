@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
-using OnlineShopping.Api.Models;
-using OnlineShopping.Api.Settings;
+using OnlineShopping.Entities;
+using OnlineShopping.Entities.Settings;
 
-namespace OnlineShopping.Api.Services
+namespace OnlineShopping.Services
 {
     public interface IUserService
     {

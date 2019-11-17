@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using OnlineShopping.Api.Models;
-using OnlineShopping.Api.Settings;
+using OnlineShopping.Entities;
+using OnlineShopping.Entities.Settings;
 
-namespace OnlineShopping.Api.Services
+namespace OnlineShopping.Services
 {
     public interface ITrolleyService
     {

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using OnlineShopping.Api.Models;
-using OnlineShopping.Api.Services;
+using OnlineShopping.Entities;
+using OnlineShopping.Services;
 
 namespace OnlineShopping.Api.Controllers
 {

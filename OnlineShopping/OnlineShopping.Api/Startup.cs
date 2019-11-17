@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OnlineShopping.Api.Services;
-using OnlineShopping.Api.Settings;
+using OnlineShopping.Entities.Settings;
+using OnlineShopping.Services;
 
 namespace OnlineShopping.Api
 {

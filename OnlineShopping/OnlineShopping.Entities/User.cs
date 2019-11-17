@@ -1,4 +1,4 @@
-﻿namespace OnlineShopping.Api.Models
+﻿namespace OnlineShopping.Entities
 {
     public class User
     {

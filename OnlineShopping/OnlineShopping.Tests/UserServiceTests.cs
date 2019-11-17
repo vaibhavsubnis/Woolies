@@ -1,8 +1,7 @@
-using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
-using OnlineShopping.Api.Services;
-using OnlineShopping.Api.Settings;
+using OnlineShopping.Entities.Settings;
+using OnlineShopping.Services;
 
 namespace OnlineShopping.Tests
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace OnlineShopping.Api.Models
+namespace OnlineShopping.Entities
 {
     public class TrolleyTotalRequest
     {
