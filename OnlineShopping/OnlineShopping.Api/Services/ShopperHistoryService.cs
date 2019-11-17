@@ -30,7 +30,7 @@ namespace OnlineShopping.Api.Services
             {
                 var response = await client.GetAsync(new Uri($"{_connectionSettings.BaseUrl}/resource/shopperHistory?token={_connectionSettings.Token}"));
 
-                return (List<ShopperHistory>)JsonConvert.DeserializeObject(response.Content.ReadAsStringAsync().Result, typeof(List<ShopperHistory>));
+                return JsonConvert.DeserializeObject<List<ShopperHistory>>(response.Content.ReadAsStringAsync().Result);
             }
         }
     }

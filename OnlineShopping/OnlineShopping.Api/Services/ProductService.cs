@@ -98,7 +98,7 @@ namespace OnlineShopping.Api.Services
             {
                 var response = await client.GetAsync(new Uri($"{_connectionSettings.BaseUrl}/resource/products?token={_connectionSettings.Token}"));
 
-                return (List<Product>)JsonConvert.DeserializeObject(response.Content.ReadAsStringAsync().Result, typeof(List<Product>));
+                return JsonConvert.DeserializeObject<List<Product>>(response.Content.ReadAsStringAsync().Result);
             }
         }
 

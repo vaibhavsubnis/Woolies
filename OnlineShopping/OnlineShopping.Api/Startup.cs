@@ -24,6 +24,7 @@ namespace OnlineShopping.Api
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IShopperHistoryService, ShopperHistoryService>();
+            services.AddTransient<ITrolleyService, TrolleyService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
