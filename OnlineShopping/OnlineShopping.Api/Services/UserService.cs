@@ -1,4 +1,6 @@
-﻿using OnlineShopping.Api.Models;
+﻿using Microsoft.Extensions.Options;
+using OnlineShopping.Api.Models;
+using OnlineShopping.Api.Settings;
 
 namespace OnlineShopping.Api.Services
 {
@@ -9,9 +11,16 @@ namespace OnlineShopping.Api.Services
 
     public class UserService : IUserService
     {
+        private readonly ConnectionSettings _connectionSettings;
+
+        public UserService(IOptions<ConnectionSettings> connectionSettings)
+        {
+            _connectionSettings = connectionSettings.Value;
+        }
+
         public User GetUser()
         {
-            return new User { Name = "Vaibhav Subnis", Token = "f87e372c-e848-4481-9b81-0830d3dbbfa8" };
+            return new User { Name = _connectionSettings.Name, Token = _connectionSettings.Token };
         }
     }
 }

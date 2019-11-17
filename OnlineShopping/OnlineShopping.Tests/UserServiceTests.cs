@@ -1,5 +1,8 @@
+using Microsoft.CodeAnalysis.Options;
+using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using OnlineShopping.Api.Services;
+using OnlineShopping.Api.Settings;
 
 namespace OnlineShopping.Tests
 {
@@ -11,13 +14,14 @@ namespace OnlineShopping.Tests
         [Test]
         public void GetUserTest_ShouldGetUserSuccessfully()
         {
-            _userService = new UserService();
+            IOptions<ConnectionSettings> connectionSettings = Options.Create(new ConnectionSettings{Name = "Test", Token = "000-111-222-333"});
+            _userService = new UserService(connectionSettings);
 
             var result = _userService.GetUser();
 
             Assert.IsNotNull(result);
-            Assert.AreEqual("Vaibhav Subnis", result.Name);
-            Assert.IsNotNull(result.Token);
+            Assert.AreEqual(connectionSettings.Value.Name, result.Name);
+            Assert.AreEqual(connectionSettings.Value.Token, result.Token);
         }
 
         // Create more test scenarios including negative scenarios.
