@@ -17,13 +17,15 @@ namespace OnlineShopping.Services
 
     public class ProductService : IProductService
     {
-        private IShopperHistoryService _shopperHistoryService;
+        private readonly IShopperHistoryService _shopperHistoryService;
         private readonly ConnectionSettings _connectionSettings;
+        private readonly IHttpClientWrapper _httpClientWrapper;
 
 
-        public ProductService(IShopperHistoryService shopperHistoryService, IOptions<ConnectionSettings> connectionSettings)
+        public ProductService(IShopperHistoryService shopperHistoryService, IOptions<ConnectionSettings> connectionSettings, IHttpClientWrapper httpClientWrapper)
         {
             _shopperHistoryService = shopperHistoryService;
+            _httpClientWrapper = httpClientWrapper;
             _connectionSettings = connectionSettings.Value;
         }
 
@@ -31,7 +33,7 @@ namespace OnlineShopping.Services
         {
             try
             {
-                var products = await getAllProducts();
+                var products = await GetAllProducts();
 
                 switch (sortOption.ToLower())
             {
@@ -44,7 +46,7 @@ namespace OnlineShopping.Services
                 case "descending":
                     return SortByName(products, "descending");
                 case "recommended":
-                    return await getRecommendedProducts(products);
+                    return await GetRecommendedProducts(products);
                 default:
                     throw new ArgumentException($"Unknown sort option {sortOption}");
             }
@@ -56,7 +58,7 @@ namespace OnlineShopping.Services
             }
         }
 
-        private async Task<List<Product>> getRecommendedProducts(List<Product> allProducts)
+        private async Task<List<Product>> GetRecommendedProducts(List<Product> allProducts)
         {
             var shoppingHistoryService = await _shopperHistoryService.GetShopperHistories();
 
@@ -92,14 +94,10 @@ namespace OnlineShopping.Services
         }
 
 
-        private async Task<List<Product>> getAllProducts()
+        private async Task<List<Product>> GetAllProducts()
         {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetAsync(new Uri($"{_connectionSettings.BaseUrl}/resource/products?token={_connectionSettings.Token}"));
-
-                return JsonConvert.DeserializeObject<List<Product>>(response.Content.ReadAsStringAsync().Result);
-            }
+            return await _httpClientWrapper.GetAsync<List<Product>>(
+                $"{_connectionSettings.BaseUrl}/resource/products?token={_connectionSettings.Token}");
         }
 
     }

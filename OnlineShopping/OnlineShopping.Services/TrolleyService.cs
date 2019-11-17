@@ -17,28 +17,19 @@ namespace OnlineShopping.Services
     public class TrolleyService : ITrolleyService
     {
         private readonly ConnectionSettings _connectionSettings;
+        private readonly IHttpClientWrapper _httpClientWrapper;
 
 
-        public TrolleyService(IOptions<ConnectionSettings> connectionSettings)
+        public TrolleyService(IOptions<ConnectionSettings> connectionSettings, IHttpClientWrapper httpClientWrapper)
         {
+            _httpClientWrapper = httpClientWrapper;
             _connectionSettings = connectionSettings.Value;
         }
 
         public async Task<decimal> GetLowestTrolleyTotal(TrolleyTotalRequest trolleyRequest)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(_connectionSettings.BaseUrl);
-
-                var request = new HttpRequestMessage(HttpMethod.Post, $"/api/resource/trolleyCalculator?token={_connectionSettings.Token}")
-                {
-                    Content = new StringContent(JsonConvert.SerializeObject(trolleyRequest), Encoding.UTF8, "application/json")
-                };
-
-                var response = await client.SendAsync(request);
-
-                return JsonConvert.DeserializeObject<decimal>(response.Content.ReadAsStringAsync().Result);
-            }
+            return await _httpClientWrapper.PostAsync<decimal, TrolleyTotalRequest>(trolleyRequest,
+                _connectionSettings.BaseUrl, $"/api/resource/trolleyCalculator?token={_connectionSettings.Token}");
         }
     }
 }

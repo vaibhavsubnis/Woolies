@@ -17,20 +17,19 @@ namespace OnlineShopping.Services
     public class ShopperHistoryService : IShopperHistoryService
     {
         private readonly ConnectionSettings _connectionSettings;
+        private readonly IHttpClientWrapper _httpClientWrapper;
 
-        public ShopperHistoryService(IOptions<ConnectionSettings> connectionSettings)
+
+        public ShopperHistoryService(IOptions<ConnectionSettings> connectionSettings, IHttpClientWrapper httpClientWrapper)
         {
+            _httpClientWrapper = httpClientWrapper;
             _connectionSettings = connectionSettings.Value;
         }
 
         public async Task<List<ShopperHistory>> GetShopperHistories()
         {
-            using (var client = new HttpClient())
-            {
-                var response = await client.GetAsync(new Uri($"{_connectionSettings.BaseUrl}/resource/shopperHistory?token={_connectionSettings.Token}"));
-
-                return JsonConvert.DeserializeObject<List<ShopperHistory>>(response.Content.ReadAsStringAsync().Result);
-            }
+            return await _httpClientWrapper.GetAsync<List<ShopperHistory>>(
+                $"{_connectionSettings.BaseUrl}/resource/shopperHistory?token={_connectionSettings.Token}");
         }
     }
 }

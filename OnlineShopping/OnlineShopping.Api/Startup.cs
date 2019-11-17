@@ -21,6 +21,7 @@ namespace OnlineShopping.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ConnectionSettings>(Configuration.GetSection("ConnectionSettings"));
+            services.AddTransient<IHttpClientWrapper, HttpClientWrapper>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IShopperHistoryService, ShopperHistoryService>();
