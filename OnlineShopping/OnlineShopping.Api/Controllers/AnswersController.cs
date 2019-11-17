@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BasicResponse.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using OnlineShopping.Api.Services;
 
-namespace BasicResponse.Controllers
+namespace OnlineShopping.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

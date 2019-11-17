@@ -1,4 +1,4 @@
-﻿namespace BasicResponse.Models
+﻿namespace OnlineShopping.Api.Models
 {
     public class User
     {

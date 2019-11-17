@@ -1,8 +1,9 @@
-using BasicResponse.Services;
 using NUnit.Framework;
+using OnlineShopping.Api.Services;
 
-namespace BasicResponseTests
+namespace OnlineShopping.Tests
 {
+    [TestFixture]
     public class UserServiceTests
     {
         private IUserService _userService;

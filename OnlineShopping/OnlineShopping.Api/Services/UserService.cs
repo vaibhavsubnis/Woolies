@@ -1,6 +1,6 @@
-﻿using BasicResponse.Models;
+﻿using OnlineShopping.Api.Models;
 
-namespace BasicResponse.Services
+namespace OnlineShopping.Api.Services
 {
     public interface IUserService
     {
